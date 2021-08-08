@@ -81,7 +81,7 @@ export default function Header({ open, setOpen }: IProps) {
             size='large'
             edge='start'
             aria-label='open drawer'
-            sx={{ mr: 2, my: 4 }}
+            sx={{  my: 4 }}
             onClick={() => setOpen(!open)}
           >
             <Box component='img' src='static/assets/icons/menu.png' />

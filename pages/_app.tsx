@@ -43,15 +43,16 @@ export default function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>My page</title>
+        <title>Dashboard</title>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
           <Header setOpen={setOpen} open={open} />
+
           <Sidebar open={open} />
-          <Main>
+          <Main sx={{ flexGrow: 1, p: 3 }}>
             <Component {...pageProps} />
           </Main>
         </Box>

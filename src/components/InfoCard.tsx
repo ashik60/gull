@@ -8,7 +8,7 @@ const CardContainer = styled(Container)({
   alignItems: 'center',
 });
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
   return {
     img: {
       display: 'block',
@@ -32,7 +32,11 @@ const InfoCard = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card} elevation={0} sx={{ width: 296, height: 131, ml: 20 }}>
+    <Card
+      className={classes.card}
+      elevation={0}
+      sx={{ width: 296, height: 131, mb: 4, mr: 4 }}
+    >
       <CardContainer>
         <img className={classes.img} src='/static/assets/icons/leds.svg' />
         <Box sx={{ ml: 1 }}>
