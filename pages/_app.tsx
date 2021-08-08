@@ -26,8 +26,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${drawerWidth}px`,
-  ...(open && {
+  marginLeft: `${drawerWidth}px`,
+  ...(!open && {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -47,12 +47,13 @@ export default function MyApp(props: MyAppProps) {
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
       <ThemeProvider theme={theme}>
-        <Box sx={{ display: 'flex' }}>
+        <Sidebar open={open} />
+
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <CssBaseline />
           <Header setOpen={setOpen} open={open} />
 
-          <Sidebar open={open} />
-          <Main sx={{ flexGrow: 1, p: 3 }}>
+          <Main sx={{ flexGrow: 1, mt: 10 }} open={open}>
             <Component {...pageProps} />
           </Main>
         </Box>

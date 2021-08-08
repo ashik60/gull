@@ -7,6 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { CSSObject, styled, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import theme from '../theme';
 
@@ -77,6 +79,15 @@ const ListItemWrapper = styled(Box)({
   },
 });
 
+const activeStyle = {
+  backgroundColor: theme.palette.primary.light,
+  borderRadius: '5px',
+  padding: '10px 12px',
+  '& .title': {
+    display: 'block',
+  },
+};
+
 const SidebarListItem = styled((props) => <ListItem {...props} />)({
   display: 'flex',
   flexDirection: 'column',
@@ -104,39 +115,48 @@ const sidebarItems = [
   {
     title: 'Dashboard',
     icon: '/static/assets/icons/dashboard.svg',
+    link: '/',
   },
   {
     title: 'Table',
+    link: '/table',
     icon: '/static/assets/icons/table.svg',
   },
   {
     title: 'Forms',
+    link: '/forms',
     icon: '/static/assets/icons/forms.svg',
   },
   {
     title: 'Notes',
-    icon: '/static/assets/icons/Notes.svg',
+    link: '/notes',
+    icon: '/static/assets/icons/notes.svg',
   },
-  // {
-  //   title: 'Pages',
-  //   icon: '/static/assets/icons/Notes.svg',
-  // },
-  // {
-  //   title: 'Sessions',
-  //   icon: '/static/assets/icons/sessions.svg',
-  // },
-  // {
-  //   title: 'Weather',
-  //   icon: '/static/assets/icons/weather.svg',
-  // },
-  // {
-  //   title: 'Connections',
-  //   icon: '/static/assets/icons/connections.svg',
-  // },
-  // {
-  //   title: 'Rewards',
-  //   icon: '/static/assets/icons/rewards.svg',
-  // },
+  {
+    title: 'Pages',
+    link: '/pages',
+    icon: '/static/assets/icons/pages.svg',
+  },
+  {
+    title: 'Sessions',
+    link: '/sessions',
+    icon: '/static/assets/icons/sessions.svg',
+  },
+  {
+    title: 'Weather',
+    link: '/weather',
+    icon: '/static/assets/icons/weather.svg',
+  },
+  {
+    title: 'Connections',
+    link: '/connections',
+    icon: '/static/assets/icons/connections.svg',
+  },
+  {
+    title: 'Rewards',
+    link: '/rewards',
+    icon: '/static/assets/icons/rewards.svg',
+  },
 ];
 
 interface IProps {
@@ -144,24 +164,32 @@ interface IProps {
 }
 
 export default function Sidebar({ open }: IProps) {
+  const router = useRouter();
+  const { asPath } = router;
+  const pathName = '/' + asPath.split('/')[1];
+
   return (
     <Box>
       <CssBaseline />
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
-          <Typography sx={{ mx: 'auto', my: 4, fontSize: 30, fontWeight: 'bold' }}>
+          <Typography
+            sx={{ mx: 'auto', mt: '40px', mb: 1, fontSize: 30, fontWeight: 'bold' }}
+          >
             Gull
           </Typography>
         </DrawerHeader>
         <List>
           {sidebarItems.map((item) => (
             <ListItemWrapper key={item.title}>
-              <SidebarListItem>
-                <ListItemIcon>
-                  <ImageIcon src={item.icon} />
-                </ListItemIcon>
-                <ListText className='title' primary={item.title} />
-              </SidebarListItem>
+              <Link href={item.link}>
+                <SidebarListItem sx={{ ...(pathName === item.link && activeStyle) }}>
+                  <ListItemIcon>
+                    <ImageIcon src={item.icon} />
+                  </ListItemIcon>
+                  <ListText className='title' primary={item.title} />
+                </SidebarListItem>
+              </Link>
             </ListItemWrapper>
           ))}
         </List>

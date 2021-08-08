@@ -75,16 +75,16 @@ interface IProps {
 export default function Header({ open, setOpen }: IProps) {
   return (
     <Box sx={{ flexGrow: 1, marginLeft: '140px' }}>
-      <AppBar color='transparent' elevation={0} position='fixed' open={open}>
+      <AppBar color='default' elevation={0} position='fixed' open={open}>
         <Toolbar>
           <IconButton
             size='large'
             edge='start'
             aria-label='open drawer'
-            sx={{  my: 4 }}
+            sx={{ my: 4, ml: 1 }}
             onClick={() => setOpen(!open)}
           >
-            <Box component='img' src='static/assets/icons/menu.png' />
+            <Box component='img' src='static/assets/icons/menu.svg' />
           </IconButton>
           <Search>
             <SearchIconWrapper>
