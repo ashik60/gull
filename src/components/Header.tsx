@@ -40,7 +40,6 @@ const AppBar = styled(MuiAppBar, {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    
   }),
 }));
 
@@ -114,7 +113,7 @@ export default function Header({ open, setOpen }: IProps) {
               </IconButton>
               <IconButton sx={{ my: 4, mr: 2 }}>
                 <Badge badgeContent={3} color='secondary'>
-                  <Box component='img' src='static/assets/icons/bell.svg' />
+                  <Box component='img' src='static/assets/icons/bell.png' />
                 </Badge>
               </IconButton>
               <IconButton edge='end'>

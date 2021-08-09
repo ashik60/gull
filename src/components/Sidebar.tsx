@@ -130,7 +130,7 @@ const sidebarItems = [
   {
     title: 'Notes',
     link: '/notes',
-    icon: '/static/assets/icons/notes.svg',
+    icon: '/static/assets/icons/notes.png',
   },
   {
     title: 'Pages',
