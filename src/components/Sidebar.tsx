@@ -29,11 +29,10 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: 'hidden',
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `0`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(9)} + 1px)`,
+    width: `0`,
   },
-  display: 'none',
 });
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -50,6 +49,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     width: drawerWidth,
     display: 'flex',
     flexDirection: 'column',
+    flexShrink: 0,
     ...(open && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': {
@@ -173,9 +173,7 @@ export default function Sidebar({ open }: IProps) {
       <CssBaseline />
       <Drawer variant='permanent' open={open}>
         <DrawerHeader>
-          <Typography
-            sx={{ mx: 'auto', mt: '40px', mb: 1, fontSize: 30, fontWeight: 'bold' }}
-          >
+          <Typography sx={{ mx: 'auto', mt: 4, mb: 1, fontSize: 30, fontWeight: 'bold' }}>
             Gull
           </Typography>
         </DrawerHeader>

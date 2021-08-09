@@ -40,7 +40,18 @@ const AppBar = styled(MuiAppBar, {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    
   }),
+}));
+
+const HeaderWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  marginBottom: '20px',
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -74,43 +85,45 @@ interface IProps {
 
 export default function Header({ open, setOpen }: IProps) {
   return (
-    <Box sx={{ flexGrow: 1, marginLeft: '140px' }}>
-      <AppBar color='default' elevation={0} position='fixed' open={open}>
-        <Toolbar>
-          <IconButton
-            size='large'
-            edge='start'
-            aria-label='open drawer'
-            sx={{ my: 4, ml: 1 }}
-            onClick={() => setOpen(!open)}
-          >
-            <Box component='img' src='static/assets/icons/menu.svg' />
-          </IconButton>
-          <Search>
-            <SearchIconWrapper>
-              <Box component='img' src='static/assets/icons/search.svg' />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder='Search'
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size='large' sx={{ my: 4, mr: 2 }}>
-              <Box component='img' src='static/assets/icons/plus.svg' />
+    <HeaderWrapper>
+      <Box sx={{ flexGrow: 1, marginLeft: '140px' }}>
+        <AppBar color='default' elevation={0} position='fixed' open={open}>
+          <Toolbar>
+            <IconButton
+              size='large'
+              edge='start'
+              aria-label='open drawer'
+              sx={{ my: 4, ml: 1 }}
+              onClick={() => setOpen(!open)}
+            >
+              <Box component='img' src='static/assets/icons/menu.svg' />
             </IconButton>
-            <IconButton sx={{ my: 4, mr: 2 }}>
-              <Badge badgeContent={3} color='secondary'>
-                <Box component='img' src='static/assets/icons/bell.svg' />
-              </Badge>
-            </IconButton>
-            <IconButton edge='end'>
-              <Box component='img' src='static/assets/images/profile.png' />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+            <Search>
+              <SearchIconWrapper>
+                <Box component='img' src='static/assets/icons/search.svg' />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder='Search'
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </Search>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <IconButton size='large' sx={{ my: 4, mr: 2 }}>
+                <Box component='img' src='static/assets/icons/plus.svg' />
+              </IconButton>
+              <IconButton sx={{ my: 4, mr: 2 }}>
+                <Badge badgeContent={3} color='secondary'>
+                  <Box component='img' src='static/assets/icons/bell.svg' />
+                </Badge>
+              </IconButton>
+              <IconButton edge='end'>
+                <Box component='img' src='static/assets/images/profile.png' />
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </HeaderWrapper>
   );
 }

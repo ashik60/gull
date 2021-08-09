@@ -53,7 +53,7 @@ export default function MyApp(props: MyAppProps) {
           <CssBaseline />
           <Header setOpen={setOpen} open={open} />
 
-          <Main sx={{ flexGrow: 1, mt: 10 }} open={open}>
+          <Main sx={{ flexGrow: 1 }} open={open}>
             <Component {...pageProps} />
           </Main>
         </Box>
